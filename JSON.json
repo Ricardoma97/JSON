@@ -1,0 +1,4 @@
+var nombre = {
+	"nombre": "Edgar Ricardo",
+	"apellido": "Martinez"
+}
