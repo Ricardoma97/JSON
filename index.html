@@ -14,16 +14,19 @@
 		function loadData(){
 			//crear peticion
 			let xhr = new XMLHttpRequest();
-			xhr.open("GET","https://github.com/Ricardoma97/JSON/blob/master/JSON.json");
-
 			xhr.onreadystatechange = function(){
 				console.log(this.readyState, this.status, this.statusText);
 			}
+			xhr.open("GET","https://ricardoma97.github.io/JSON/JSON.json");
+
 			//procesar peticion
 			xhr.onload = function (){
 				if(this.readyState ===4 && this.status === 200){
 					//cambiar texto
-					console.log("cambiando texto");
+					console.log(this.responseText);
+					let data = JSON.parse(this.responseText);
+					console.log(data);
+					//let html = data.
 					//esconder el boton
 				}else{
 					//la info no llego
