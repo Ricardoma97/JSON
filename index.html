@@ -13,11 +13,26 @@
 	<script type="text/javascript">
 		function loadData(){
 			//crear peticion
-			
+			let xhr = new XMLHttpRequest();
+			xhr.open("GET","https://github.com/Ricardoma97/JSON/blob/master/JSON.json");
+
+			xhr.onreadystatechange = function(){
+				console.log(this.readyState, this.status, this.statusText);
+			}
 			//procesar peticion
-			//modificar contenido
+			xhr.onload = function (){
+				if(this.readyState ===4 && this.status === 200){
+					//cambiar texto
+					console.log("cambiando texto");
+					//esconder el boton
+				}else{
+					//la info no llego
+					alert('Error: '+ this.status);
+				}
+			}
 			//enviar peticion
-		}
+			xhr.send();
+		} 
 	</script>
 </body>
 </html>
