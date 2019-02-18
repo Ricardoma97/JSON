@@ -10,7 +10,49 @@
 	<button id="btn" type="button" onclick="loadData()">
 		Mostrar informacion sin recargar la pantalla
 	</button>
+	<div>
+		<div>	
+		<input type="text" id="catname" value="" placeholder="Name">
+		</div>
+		<div>	
+		<input type="number" id="cuteness" value="" placeholder="Cuteness">
+		</div>
+		<div>
+		<input type="text" id="color" value="" placeholder="Color">
+		</div>
+		<div>
+		<input type="text" id="owner" value="" placeholder="Owner">
+		</div>
+		<div>Explodes
+		<input type="checkbox" id="explodes" value="">
+		</div>
+		<button id="btn" type="button" onclick="postExamp()">Enviar</button>
+	</div>
+	<div id="loaded-info"></div>
 	<script type="text/javascript">
+		function postExamp(){
+			// body...
+			let xhr = new XMLHttpRequest();
+			xhr.onreadystatechange = function(){
+				console.log(this.readyState, this.status, this.statusText);
+			}
+			xhr.open("POST","http://10.24.43.221:3000/kittens");
+			xhr.setRequestHeader("content-type","application/json");
+			xhr.onload = function(){};
+			xhr.onerror=function (){
+					alert("la conexion ha fallado");
+			}
+			let catname= document.getElementById('catname').value;
+			let cuteness= document.getElementById('cuteness').value;
+			let color= document.getElementById('color').value;
+			let owner= document.getElementById('owner').value;
+			let explodes= document.getElementById('explodes').checked;
+			let obj={catname, cuteness, color, owner, explodes};
+			let data=JSON.stringify(obj);
+			console.log(obj);
+			console.log(data);
+			xhr.send(data);
+		}
 		function loadData(){
 			//crear peticion
 			let xhr = new XMLHttpRequest();
@@ -25,13 +67,24 @@
 					//cambiar texto
 					console.log(this.responseText);
 					let data = JSON.parse(this.responseText);
+					let emptyDiv= document.getElementById("loaded-info");
 					console.log(data);
-					//let html = data.
+					let html ='';
+					data.forEach(function(persona){
+						html+='<p>';
+						html+= persona.nombre + ' '+persona.apellido + 'nacio el '+ persona.cumpleanos+' le gusta';
+						html+='</p>';
+					});
 					//esconder el boton
+					emptyDiv.insertAdjacentHTML('beforeend',html);
 				}else{
 					//la info no llego
 					alert('Error: '+ this.status);
 				}
+			}
+			//ERROR
+			xhr.onerror=function (){
+					alert("la conexion ha fallado");
 			}
 			//enviar peticion
 			xhr.send();

@@ -1,13 +1,22 @@
 [{
 	"nombre": "Edgar Ricardo",
-	"apellido": "Martinez"
+	"apellido": "Martinez",
+	"gustos":"videojuegos",
+	"disgustos":"el k-pop",
+	"cumpleanos":"2 de julio"
 },
 {
 	"nombre": "Sancho",
-	"apellido":"Panza"
+	"apellido":"Panza",
+	"gustos":"la comida",
+	"disgustos":"",
+	"cumpleanos":"3 de agosto"
 },
 {
 	"nombre": "Vito",
-	"apellido": "Corleone"
+	"apellido": "Corleone",
+	"gustos":"el poder",
+	"disgustos":"que maten a sus hijos :(",
+	"cumpleanos":"29 de febrero"	
 }
 ]
